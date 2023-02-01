@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+    aapanel:
+        image: 'aapanel/aapanel:lib' 
+        # container_name: aapanel
+        restart: unless-stopped        
+        ports:
+            # Control Panel
+            - '8200:7800'
+            # FTP
+            - '8021:21'
+            # ssl
+            - '8443:443'
+            # www
+            - '82:80'
+            # phpMyAdmin
+            - '8880:888'
+            # Mysql
+            - '3307:3306'
+        volumes:
+            - ~/website_data:/www/wwwroot
+            - ~/mysql_data:/www/server/data
+            - ~/vhost:/www/server/panel/vhost
